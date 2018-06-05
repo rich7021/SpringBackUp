@@ -24,7 +24,17 @@ public class Application {
 ## Import Spring Boot and Spring JPA
 
 1. Add dependencies in build.gradle
+
+2. We met problem when using Spring 2.0.2.RELEASE with postgres jdbc.  
+  
+    It always show 
+`java.sql.SQLFeatureNotSupportedException: 這個 org.postgresql.jdbc42.Jdbc42Connection.createClob() 方法尚未被實作。`.  
+In `org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl`, line 109-111 explained this issue. It's about when Spring try to 
+get database metadata, it needs the jdbc driver implement this method. However, postgres jdbc not support it. Therefore, 
+the exceptions is threw by `org.postgresql.jdbc.PgConnectoin` which implements the `java.sql.Connection`, used to tell user the method
+ is not supprot by postgres jdbc.  
+ If we add `spring.jpa.properties.hibernate.temp.use_jdbc_metadata_defaults = false` in applicatoin.properties, Spring will not try to load
+  database metadata, we can avoid this exception threw.
+ However, it still can work normally, even if you don't deal with it. 
+[Reference here](https://stackoverflow.com/questions/10075081/hibernate-slow-to-acquire-postgres-connection)  
     
-2. We met problem when using Spring 2.0.2.RELEASE with postgres jdbc. It always show `java.sql.SQLFeatureNotSupportedException: 這個 org.postgresql.jdbc42.Jdbc42Connection.createClob() 方法尚未被實作。`.  
-It seems a hibernate issue. It looks like when hibernate initializing, it will load database metadata. However, the clob type is not recognized by the jdbc driver.
-[Reference here](https://stackoverflow.com/questions/10075081/hibernate-slow-to-acquire-postgres-connection)

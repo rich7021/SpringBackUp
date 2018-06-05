@@ -6,7 +6,7 @@ apply plugin: 'java'
 sourceCompatibility = 1.8
 
 ext {
-    springBootVersion = '2.0.0.RELEASE'
+    springBootVersion = '2.0.2.RELEASE'
 }
 
 repositories {
