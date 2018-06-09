@@ -2,15 +2,15 @@
 
 In this project, we should learn belows:
 
-- Spring Boot
-  - To initial schema and data with script
-- Spring Boot Web
-  - build a RESTFul APIs service
-- Spring Boot data jpa
-  - Integration with postgresql
-  - Kinds of operations
-- Spring Boot test
-
+- Build a RESTFul APIs service with:
+  - Spring Boot web
+  - Spring Boot Data JPA
+- Make sure product quality
+  - Spring Boot Test
+- Database integration with PostgreSQL
+- Basic Authentication to protect APIs with
+  - Spring Security basic auth
+- ACL structure design
 
 ## Build Project and Import Spring Boot Web
 
