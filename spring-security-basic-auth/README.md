@@ -93,7 +93,7 @@ In this project, we should learn belows:
 3.
 
 
-[](#ddl_dml)
+<a name="ddl_dml"></a>
 > [1] What is ddl? dml?
 [DDL](https://zh.wikipedia.org/zh-tw/%E8%B3%87%E6%96%99%E5%AE%9A%E7%BE%A9%E8%AA%9E%E8%A8%80) used to define data schema, composed by `CREATE`, `ALTER` and `DROP`.
 [DML](https://zh.wikipedia.org/wiki/%E8%B3%87%E6%96%99%E6%93%8D%E7%B8%B1%E8%AA%9E%E8%A8%80) used to manipulate database objects and data.
