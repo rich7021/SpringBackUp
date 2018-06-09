@@ -11,8 +11,8 @@ import java.util.List;
 
 /* @RestController cannot assign URI path, it's necessary to define with @RequestMapping */
 @RestController
-@RequestMapping("users")
-public class UserController {
+@RequestMapping("account")
+public class AccountController {
 
     @Autowired
     private AccountService accountService;
