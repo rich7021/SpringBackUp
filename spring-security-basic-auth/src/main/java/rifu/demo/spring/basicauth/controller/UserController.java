@@ -1,4 +1,4 @@
-package rifu.demo.spring.basic_auth.controller;
+package rifu.demo.spring.basicauth.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

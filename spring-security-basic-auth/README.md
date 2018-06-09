@@ -14,7 +14,7 @@
 2. Create Applicatoin.java in some package. If the class not in any package, the application will report error. Also, the behaviour is discouraged.
 
     ```java
-    package rifu.demo.spring.basic_auth;
+    package rifu.demo.spring.basicauth;
 
     import org.springframework.boot.SpringApplication;
     import org.springframework.boot.autoconfigure.SpringBootApplication;

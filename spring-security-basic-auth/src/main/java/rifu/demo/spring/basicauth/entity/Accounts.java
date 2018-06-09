@@ -1,4 +1,4 @@
-package rifu.demo.spring.basic_auth.entity;
+package rifu.demo.spring.basicauth.entity;
 
 import javax.persistence.*;
 
