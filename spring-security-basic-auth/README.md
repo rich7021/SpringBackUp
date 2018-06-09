@@ -40,10 +40,21 @@ In this project, we should learn belows:
     ```
 
 3. Create a Controller and run application to test if configurations correct or not by call api.
+    ```java
+    @RestController
+    @RequestMapping("users")
+    public class UserController {
+
+        @GetMapping
+        public String getMessage() {
+            return "Hello World";
+        }
+    }
+    ```
 
 ## Introducing Spring Data Jpa and postgreSQL
 
-1. We user postgreSql here, so add dependencies of jpa and postgresql jdbc in build.gradle
+1. We use postgreSql here, so add dependencies of jpa and postgresql jdbc in build.gradle
 
     ```gradle
     compile "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}"
@@ -53,23 +64,20 @@ In this project, we should learn belows:
 2. Add below setting in application.properties
 
     ```
-   spring.datasource.driverClassName=org.postgresql.Driver
-   spring.datasource.url=jdbc:postgresql://127.0.0.1:5432/postgres
-   spring.datasource.username=postgres
-   spring.datasource.password=12345678
-   #when spring initial, it will run this sql to init schema
-   spring.datasource.schema=classpath:sql/ddl/schema.sql
-   #when spring initial, it will run this sql to init data
-   spring.datasource.data=classpath:sql/dml/data.sql
+    spring.datasource.driverClassName=org.postgresql.Driver
+    spring.datasource.url=jdbc:postgresql://127.0.0.1:5432/postgres
+    spring.datasource.username=postgres
+    spring.datasource.password=12345678
+    #Make spring using the script defined below to inital
+    #Special notice! This line will make database initialized every single time.
+    spring.datasource.initialization-mode=always
+    spring.datasource.schema=classpath:sql/ddl/schema.sql
+    spring.datasource.data=classpath:sql/dml/data.sql
 
-   spring.jpa.properties.hibernate.temp.use_jdbc_metadata_defaults=false
-   spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQL82Dialect
-   #if sql showed up in log or not
-   spring.jpa.show-sql=false
-   #assign spring to initial tables and data when it start
-   spring.jpa.hibernate.ddl-auto=create-drop
-    ```
-
+    spring.jpa.properties.hibernate.temp.use_jdbc_metadata_defaults=false
+    spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQL82Dialect
+    ```  
+    [\[1\]DDL & DML](#ddl_dml)  
     > We met problem when using Spring 2.0.2.RELEASE with postgres jdbc.
     It always show
     `java.sql.SQLFeatureNotSupportedException: 這個 org.postgresql.jdbc42.Jdbc42Connection.createClob() 方法尚未被實作。`.
@@ -85,7 +93,7 @@ In this project, we should learn belows:
 3.
 
 
-
-> What is ddl? dml?
+[](#ddl_dml)
+> [1] What is ddl? dml?
 [DDL](https://zh.wikipedia.org/zh-tw/%E8%B3%87%E6%96%99%E5%AE%9A%E7%BE%A9%E8%AA%9E%E8%A8%80) used to define data schema, composed by `CREATE`, `ALTER` and `DROP`.
 [DML](https://zh.wikipedia.org/wiki/%E8%B3%87%E6%96%99%E6%93%8D%E7%B8%B1%E8%AA%9E%E8%A8%80) used to manipulate database objects and data.
