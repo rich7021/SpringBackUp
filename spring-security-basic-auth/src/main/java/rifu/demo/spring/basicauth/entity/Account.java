@@ -3,8 +3,8 @@ package rifu.demo.spring.basicauth.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "ACCOUNTS")
-public class Accounts {
+@Table(name = "ACCOUNT")
+public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

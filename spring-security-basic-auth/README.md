@@ -1,8 +1,20 @@
 # Spring Security - Basic Authentication
 
+In this project, we should learn belows:
+
+- Spring Boot
+  - To initial schema and data with script
+- Spring Boot Web
+  - build a RESTFul APIs service
+- Spring Boot data jpa
+  - Integration with postgresql
+  - Kinds of operations
+- Spring Boot test
+
+
 ## Build Project and Import Spring Boot Web
 
-1.  Import Spring Boot Web Starter in build.gradle  
+1.  Import Spring Boot Web Starter in build.gradle
     ```gradle
     ext {
         springBootVersion = '2.0.2.RELEASE'
@@ -14,7 +26,7 @@
 2. Create Applicatoin.java in some package. If the class not in any package, the application will report error. Also, the behaviour is discouraged.
 
     ```java
-    package rifu.demo.spring.basicauth;
+    package rifu.demo.spring.basic_auth;
 
     import org.springframework.boot.SpringApplication;
     import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -60,20 +72,20 @@
 
     > We met problem when using Spring 2.0.2.RELEASE with postgres jdbc.
     It always show
-    `java.sql.SQLFeatureNotSupportedException: 這個 org.postgresql.jdbc42.Jdbc42Connection.createClob() 方法尚未被實作。`.  
+    `java.sql.SQLFeatureNotSupportedException: 這個 org.postgresql.jdbc42.Jdbc42Connection.createClob() 方法尚未被實作。`.
     In `org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl`, line 109-111 explained this issue. It's about when Spring try to
     get database metadata, it needs the jdbc driver implement this method. However, postgres jdbc not support it. Therefore,
     the exceptions is threw by `org.postgresql.jdbc.PgConnectoin` which implements the `java.sql.Connection`, used to tell user the method
-    is not supprot by postgres jdbc.  
+    is not supprot by postgres jdbc.
     If we add `spring.jpa.properties.hibernate.temp.use_jdbc_metadata_defaults = false` in applicatoin.properties, Spring will not try to load
     database metadata, we can avoid this exception threw.
     However, it still can work normally, even if you don't deal with it.
-    [Reference here](https://stackoverflow.com/questions/10075081/hibernate-slow-to-acquire-postgres-connection)  
+    [Reference here](https://stackoverflow.com/questions/10075081/hibernate-slow-to-acquire-postgres-connection)
+
+3.
 
 
 
-
-
-> What is ddl? dml?  
-[DDL](https://zh.wikipedia.org/zh-tw/%E8%B3%87%E6%96%99%E5%AE%9A%E7%BE%A9%E8%AA%9E%E8%A8%80) used to define data schema, composed by `CREATE`, `ALTER` and `DROP`.  
+> What is ddl? dml?
+[DDL](https://zh.wikipedia.org/zh-tw/%E8%B3%87%E6%96%99%E5%AE%9A%E7%BE%A9%E8%AA%9E%E8%A8%80) used to define data schema, composed by `CREATE`, `ALTER` and `DROP`.
 [DML](https://zh.wikipedia.org/wiki/%E8%B3%87%E6%96%99%E6%93%8D%E7%B8%B1%E8%AA%9E%E8%A8%80) used to manipulate database objects and data.
