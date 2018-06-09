@@ -15,10 +15,10 @@
 
     ```java
     package rifu.demo.spring.basic_auth;
-    
+
     import org.springframework.boot.SpringApplication;
     import org.springframework.boot.autoconfigure.SpringBootApplication;
-    
+
     @SpringBootApplication
     public class Application {
         public static void main(String[] args) {
@@ -49,7 +49,7 @@
    spring.datasource.schema=classpath:sql/ddl/schema.sql
    #when spring initial, it will run this sql to init data
    spring.datasource.data=classpath:sql/dml/data.sql
-   
+
    spring.jpa.properties.hibernate.temp.use_jdbc_metadata_defaults=false
    spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQL82Dialect
    #if sql showed up in log or not
@@ -59,17 +59,17 @@
     ```
 
     > We met problem when using Spring 2.0.2.RELEASE with postgres jdbc.
-        It always show 
-        `java.sql.SQLFeatureNotSupportedException: 這個 org.postgresql.jdbc42.Jdbc42Connection.createClob() 方法尚未被實作。`.  
-        In `org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl`, line 109-111 explained this issue. It's about when Spring try to 
-        get database metadata, it needs the jdbc driver implement this method. However, postgres jdbc not support it. Therefore, 
-        the exceptions is threw by `org.postgresql.jdbc.PgConnectoin` which implements the `java.sql.Connection`, used to tell user the method
-         is not supprot by postgres jdbc.  
-         If we add `spring.jpa.properties.hibernate.temp.use_jdbc_metadata_defaults = false` in applicatoin.properties, Spring will not try to load
-          database metadata, we can avoid this exception threw.
-         However, it still can work normally, even if you don't deal with it. 
-        [Reference here](https://stackoverflow.com/questions/10075081/hibernate-slow-to-acquire-postgres-connection)  
-        
+    It always show
+    `java.sql.SQLFeatureNotSupportedException: 這個 org.postgresql.jdbc42.Jdbc42Connection.createClob() 方法尚未被實作。`.  
+    In `org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl`, line 109-111 explained this issue. It's about when Spring try to
+    get database metadata, it needs the jdbc driver implement this method. However, postgres jdbc not support it. Therefore,
+    the exceptions is threw by `org.postgresql.jdbc.PgConnectoin` which implements the `java.sql.Connection`, used to tell user the method
+    is not supprot by postgres jdbc.  
+    If we add `spring.jpa.properties.hibernate.temp.use_jdbc_metadata_defaults = false` in applicatoin.properties, Spring will not try to load
+    database metadata, we can avoid this exception threw.
+    However, it still can work normally, even if you don't deal with it.
+    [Reference here](https://stackoverflow.com/questions/10075081/hibernate-slow-to-acquire-postgres-connection)  
+
 
 
 
